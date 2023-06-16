@@ -3,38 +3,39 @@ import express from "express";
 const server = express();
 const port = 3333;
 
+let data = [];
+
+server.use(express.json());
+
 server.get("/", (request, response) => {
-  const param = request.query;
+  const { busca } = request.query;
 
-  console.log(param);
+  console.log(busca);
 
-  response.json([
-    {
-      id: param.page,
-      name: "Bruno S Velho",
-      email: "bruno@email.com",
-    },
-    {
-      id: 2,
-      name: "Bruno S Velho",
-      email: "bruno@email.com",
-    },
-    {
-      id: 3,
-      name: "Bruno S Velho",
-      email: "bruno@email.com",
-    },
-    {
-      id: 4,
-      name: "Bruno S Velho",
-      email: "bruno@email.com",
-    },
-    {
-      id: 5,
-      name: "Bruno S Velho",
-      email: "bruno@email.com",
-    },
-  ]);
+  if (data.length > 0) {
+    if (busca) {
+      console.log(!!busca);
+      response.json({ msg: "Encontrei" });
+    } else {
+      response.json(data);
+    }
+  } else {
+    response.json({ msg: "Data está vazio" });
+  }
+});
+
+server.post("/", (request, response) => {
+  const requestBody = request.body;
+
+  const msg = JSON.stringify(requestBody);
+
+  if (msg.length > 2) {
+    data.push(requestBody);
+
+    response.send("OK");
+  } else {
+    response.status(400).send("Rota sem body ou sem conteúdo");
+  }
 });
 
 server.listen(port, () => {
