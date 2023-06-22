@@ -1,9 +1,10 @@
 import express from "express";
+import { Database } from "./database.js";
 
 const server = express();
 const port = 3333;
 
-let data = [];
+const database = new Database();
 
 server.use(express.json());
 
@@ -30,9 +31,11 @@ server.post("/", (request, response) => {
   const msg = JSON.stringify(requestBody);
 
   if (msg.length > 2) {
-    data.push(requestBody);
+    // data.push(requestBody);
 
-    response.send("OK");
+    database.insert("user", requestBody);
+
+    response.status(201).json({ msg: "Arquivo salvo com sucesso!" });
   } else {
     response.status(400).send("Rota sem body ou sem conteúdo");
   }
