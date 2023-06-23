@@ -1,4 +1,5 @@
 import express from "express";
+import { randomUUID } from "node:crypto";
 import { Database } from "./database.js";
 
 const server = express();
@@ -11,18 +12,9 @@ server.use(express.json());
 server.get("/", (request, response) => {
   const { busca } = request.query;
 
-  console.log(busca);
+  const data = database.select("user", busca);
 
-  if (data.length > 0) {
-    if (busca) {
-      console.log(!!busca);
-      response.json({ msg: "Encontrei" });
-    } else {
-      response.json(data);
-    }
-  } else {
-    response.json({ msg: "Data está vazio" });
-  }
+  response.json(data);
 });
 
 server.post("/", (request, response) => {
@@ -33,7 +25,12 @@ server.post("/", (request, response) => {
   if (msg.length > 2) {
     // data.push(requestBody);
 
-    database.insert("user", requestBody);
+    database.insert("user", {
+      id: randomUUID(),
+      name: requestBody.name,
+      curso: requestBody.curso,
+      estado: requestBody.estado,
+    });
 
     response.status(201).json({ msg: "Arquivo salvo com sucesso!" });
   } else {

@@ -19,23 +19,38 @@ export class Database {
     fs.writeFile(databasePath, JSON.stringify(this.database));
   }
 
-  select(table) {
+  // database.select('user')
+  // database.select('user', 'rafael')
+
+  // "  BruNo  "
+  // "BRUNO"
+
+  select(table, search = "") {
     const data = this.database[table] ?? [];
 
-    return data;
+    if (search) {
+      const searchUppercase = search.toUpperCase().trim();
+
+      const result = data.find((item) => {
+        return item.name.toUpperCase().trim() === searchUppercase;
+      });
+
+      if (result) {
+        return result;
+      } else {
+        return { msg: "Não foi encontrado ninguem!" };
+      }
+    } else {
+      return data;
+    }
   }
 
   insert(table, data) {
-    console.log("table:", table);
-    console.log("data:", data);
-
     if (Array.isArray(this.database[table])) {
       this.database[table].push(data);
     } else {
       this.database[table] = [data];
-      this.persist();
     }
-
-    console.log(this.database);
+    this.persist();
   }
 }
