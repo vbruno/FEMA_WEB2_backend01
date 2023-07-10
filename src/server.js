@@ -52,6 +52,19 @@ server.delete("/:id", (request, response) => {
   }
 });
 
+server.put("/:id", (request, response) => {
+  const { id } = request.params;
+  const requestBody = request.body;
+
+  const result = database.update("user", id, requestBody);
+
+  if (!result.error) {
+    response.status(202).json(result);
+  } else {
+    response.status(404).json(result);
+  }
+});
+
 server.listen(port, () => {
   console.log(`🚀 Servidor em funcionamento!!! - http://localhost:${port}`);
 });
