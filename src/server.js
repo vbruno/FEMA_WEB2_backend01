@@ -38,6 +38,20 @@ server.post("/", (request, response) => {
   }
 });
 
+// http://localhost:3333/da4603af-0f8d-45ae-8068-65710f2c27ba
+
+server.delete("/:id", (request, response) => {
+  const { id } = request.params;
+
+  const result = database.delete("user", id);
+
+  if (!result.error) {
+    response.status(202).json(result);
+  } else {
+    response.status(404).json(result);
+  }
+});
+
 server.listen(port, () => {
   console.log(`🚀 Servidor em funcionamento!!! - http://localhost:${port}`);
 });

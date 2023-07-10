@@ -19,12 +19,6 @@ export class Database {
     fs.writeFile(databasePath, JSON.stringify(this.database));
   }
 
-  // database.select('user')
-  // database.select('user', 'rafael')
-
-  // "  BruNo  "
-  // "BRUNO"
-
   select(table, search = "") {
     const data = this.database[table] ?? [];
 
@@ -52,5 +46,26 @@ export class Database {
       this.database[table] = [data];
     }
     this.persist();
+
+    return data;
+  }
+
+  delete(table, id) {
+    console.log(id);
+
+    const rowIndex = this.database[table].findIndex((row) => {
+      return row.id === id;
+    });
+
+    console.log(rowIndex);
+
+    if (rowIndex > -1) {
+      this.database[table].splice(rowIndex, 1);
+      this.persist();
+
+      return { error: false, message: "Removido registro com sucesso!" };
+    } else {
+      return { error: true, message: "Falha na remoção do registro" };
+    }
   }
 }
