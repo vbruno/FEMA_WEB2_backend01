@@ -10,11 +10,11 @@
             "colId": "9c00a22f-d1b3-495c-82d3-78a486ef2517",
             "containerId": "",
             "name": "GetAll",
-            "url": "http://localhost:3333/",
+            "url": "http://localhost:3333/use",
             "method": "GET",
             "sortNum": 10000,
             "created": "2023-07-10T22:45:19.543Z",
-            "modified": "2023-07-10T22:45:54.022Z",
+            "modified": "2023-07-11T01:27:33.069Z",
             "headers": [],
             "params": [],
             "tests": []
@@ -24,16 +24,16 @@
             "colId": "9c00a22f-d1b3-495c-82d3-78a486ef2517",
             "containerId": "",
             "name": "getByName",
-            "url": "http://localhost:3333/?busca=vitoria",
+            "url": "http://localhost:3333/user/?busca=pedro",
             "method": "GET",
             "sortNum": 20000,
             "created": "2023-07-10T22:48:05.806Z",
-            "modified": "2023-07-10T22:49:56.241Z",
+            "modified": "2023-07-11T01:17:16.163Z",
             "headers": [],
             "params": [
                 {
                     "name": "busca",
-                    "value": "vitoria",
+                    "value": "pedro",
                     "isPath": false
                 }
             ],
@@ -44,16 +44,16 @@
             "colId": "9c00a22f-d1b3-495c-82d3-78a486ef2517",
             "containerId": "",
             "name": "Inserir User",
-            "url": "http://localhost:3333",
+            "url": "http://localhost:3333/user/",
             "method": "POST",
             "sortNum": 20000,
             "created": "2023-07-10T22:51:18.110Z",
-            "modified": "2023-07-10T22:52:47.292Z",
+            "modified": "2023-07-11T01:17:29.831Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"name\": \"Fulano\",\n  \"curso\": \"Tecnico em Informatica\",\n  \"estado\": \"ativo\"\n}",
+                "raw": "{\n  \"name\": \"Fulane\",\n  \"curso\": \"Tecnico em Informatica\",\n  \"estado\": \"ativo\"\n}",
                 "form": []
             },
             "tests": []
@@ -77,11 +77,11 @@
             "colId": "9c00a22f-d1b3-495c-82d3-78a486ef2517",
             "containerId": "",
             "name": "update user",
-            "url": "http://localhost:3333/10141acc-8ea9-4c34-b23c-804aa1b0290d",
+            "url": "http://localhost:3333/user/10141acc-8ea9-4c34-b23c-804aa1b0290d",
             "method": "PUT",
             "sortNum": 25000,
             "created": "2023-07-11T00:32:13.505Z",
-            "modified": "2023-07-11T00:36:03.125Z",
+            "modified": "2023-07-11T01:28:01.731Z",
             "headers": [],
             "params": [],
             "body": {
