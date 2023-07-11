@@ -54,6 +54,7 @@ server.delete("/:id", (request, response) => {
 
 server.put("/:id", (request, response) => {
   const { id } = request.params;
+
   const requestBody = request.body;
 
   const result = database.update("user", id, requestBody);

@@ -68,4 +68,20 @@ export class Database {
       return { error: true, message: "Falha na remoção do registro" };
     }
   }
+
+  update(table, id, data) {
+    const rowIndex = this.database[table].findIndex((row) => {
+      return row.id === id;
+    });
+
+    if (rowIndex > -1) {
+      this.database[table][rowIndex] = { id, ...data };
+
+      this.persist();
+
+      return { error: false, message: "Alterado registro com sucesso!!" };
+    } else {
+      return { error: true, message: "Falha na alteração do registro" };
+    }
+  }
 }
